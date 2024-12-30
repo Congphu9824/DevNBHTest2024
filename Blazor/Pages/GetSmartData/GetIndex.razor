@@ -1,0 +1,41 @@
+﻿@page "/GetIndex"
+@using Data.Model
+
+
+<h3>Get Index SmartData</h3>
+
+<SfGrid DataSource="GridData"
+        AllowPaging="true"
+        AllowFiltering="true"
+        AllowSorting="true"
+        Height="400px;"
+        Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "ExcelExport" })">
+       <GridFilterSettings Type="FilterType.Excel"></GridFilterSettings>
+       <GridEvents TValue="SmartData"></GridEvents>
+    <GridPageSettings PageSize="8"></GridPageSettings>
+    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog" ShowDeleteConfirmDialog="true"></GridEditSettings>
+    <GridColumns>
+        <GridColumn Field=@nameof(SmartData.Id) HeaderText="Id" TextAlign="TextAlign.None" Format="d" IsPrimaryKey="true" Visible="false" Width="120"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.DataType) HeaderText="DataType" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" ></GridColumn>
+        <GridColumn Field=@nameof(SmartData.DataName) HeaderText="DataName" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" ></GridColumn>
+        <GridColumn Field=@nameof(SmartData.VoucherDate) HeaderText="DataName" Format="d" EditType="EditType.DatePickerEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.RecordDate) HeaderText="RecordDate" Format="d" EditType="EditType.DatePickerEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.InvoiceResult) HeaderText="InvoiceResult" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.PersonCode) HeaderText="PersonCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.PersonName) HeaderText="PersonName" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.PersonAddress) HeaderText="PersonAddress" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.PersonTaxCode) HeaderText="PersonTaxCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.ObjectCode) HeaderText="ObjectCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.ObjectName) HeaderText="ObjectName" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.ObjectAddress) HeaderText="ObjectAddress" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.ObjectTaxCode) HeaderText="ObjectTaxCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.Description) HeaderText="Description" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.IdAsc) HeaderText="IdAsc" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+        <GridColumn Field=@nameof(SmartData.Notes) HeaderText="Notes" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None"></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+
+@code {
+
+}
