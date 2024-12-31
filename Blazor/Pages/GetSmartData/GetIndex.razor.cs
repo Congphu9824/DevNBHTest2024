@@ -10,14 +10,14 @@ namespace Blazor.Pages.GetSmartData
     {
         [Inject] private IServiceAll IServiceAll { get; set; }
 
-        private List<SmartData> GridData { get; set; } = new List<SmartData>();                                         
-        private SmartData SmartData = new SmartData();
+        private List<SmartData> GridData { get; set; } = new List<SmartData>();
+        private SmartData SmartDatas = new SmartData();
         SfGrid<SmartData> SfGrid;
 
  
         protected override async Task OnInitializedAsync()
         {
-            GridData = await IServiceAll.Getall();
+            GridData = await IServiceAll.GetSmartData();
 
         }
 

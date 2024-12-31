@@ -1,15 +1,17 @@
-using API.Entities;
+
+using API.Model;
 using API.Repositories;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Add services to the container.
 builder.Services.AddDbContext<DevNbhtest2024Context>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IRepDevContext, RepDevContext>();
 builder.Services.AddScoped<IDataService, DataService>();
@@ -36,4 +38,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+  app.Run();
