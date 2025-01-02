@@ -43,7 +43,7 @@ namespace Data.Model
         public string? ENumberInvoice { get; set; }
         public string? ENumberInvoiceDraft { get; set; }
         public string? InvoiceResult { get; set; }
-        public Guid IdDataInherit { get; set; }
+        public Guid? IdDataInherit { get; set; }
         public bool NotEnvironment { get; set; }
         public string? VehiclesName { get; set; }
         public string? VoucherStatus { get; set; }
@@ -52,7 +52,6 @@ namespace Data.Model
         public string? InvoiceTemplate { get; set; }
         public string? SignTransfer { get; set; }
         public bool Register { get; set; }
-        public int IdAsc { get; set; }
         public int? CodeUnit { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreateDate { get; set; }

@@ -8,7 +8,6 @@ namespace API.Repositories
     {
         Task<List<T>> GetListObjectAsync<T>(string storeName);
         Task<List<T>> GetListObjectAsync<T>(string storeName, object value);
-
     }
 
     public class RepDevContext(IConfiguration _Iconfiguration) : IRepDevContext

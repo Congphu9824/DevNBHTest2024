@@ -39,7 +39,6 @@ namespace API.Controllers
                 EndDate
             };
             var data = await _IrepDevContext.GetListObjectAsync<WsmartMenu>("WSmartGetData", parameters);
-
             return data;
         }
 

@@ -16,8 +16,14 @@ namespace Blazor.Services
         Task<bool> updateWsSmartData(ResponseContext request);
         
     }
-    public class ServiceAll(HttpClient _httpClient) : IServiceAll
+    public class ServiceAll : IServiceAll
     {
+        private readonly HttpClient _httpClient;
+        public ServiceAll(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
         public async Task<bool> CreateWsSmartData(ResponseContext request)
         {
             var response = await _httpClient.PostAsJsonAsync("api/WsSmartData/CreateData", request);
@@ -48,7 +54,8 @@ namespace Blazor.Services
 
         public async Task<List<SmartData>> GetSmartData()
         {
-            return await _httpClient.GetFromJsonAsync<List<SmartData>>("api/Smart/GetDataAlls");
+             var result = await _httpClient.GetFromJsonAsync<List<SmartData>>("api/ApiDev/GetData?parameter=GetAll&tablename=SmartData&LoaiPhieu=InheritUNC");
+            return result;
         }
 
         public async Task<List<WsmartMenu>> GetSmartMenus()

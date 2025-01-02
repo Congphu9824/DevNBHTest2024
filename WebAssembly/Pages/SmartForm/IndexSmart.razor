@@ -1,0 +1,104 @@
+﻿@page "/IndexSmart"
+@using Data.Model
+
+<h3>Index Smart</h3>
+<div class="col-lg-12 control-section">
+	<div class="content-wrapper">
+		<div class="row">
+			<SfGrid DataSource="GridData"
+					AllowFiltering="true"
+					AllowSorting="true"
+					Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "Search" })"
+					Height="450px;"
+					@ref="SfGrid"
+					ContextMenuItems="@(new List<object>() { "Copy", "Edit", "Delete", "Save", "Cancel", "PdfExport" })">
+				<GridEvents TValue="SmartData" OnActionBegin="OnActionBeginHandler"></GridEvents>
+				<GridFilterSettings Type="FilterType.Excel"></GridFilterSettings>
+				<GridPageSettings PageSize="10"></GridPageSettings>
+				<GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog" ShowDeleteConfirmDialog="true">
+					<Template>
+						@{
+							var Smartdata = (context as SmartData);
+							<div class="container">
+								<div class="row">
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="DataType" @bind-Value="@(Smartdata.DataType)"></SfTextBox>
+									</div>	
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="DataName" @bind-Value="@(Smartdata.DataName)"></SfTextBox>
+									</div>	
+									<div class="form-group col-md-6">
+										<SfDateTimePicker FloatLabelType="FloatLabelType.Always" Placeholder="VoucherDate" @bind-Value="@(Smartdata.VoucherDate)"></SfDateTimePicker>
+									</div>	
+									<div class="form-group col-md-6">
+										<SfDateTimePicker FloatLabelType="FloatLabelType.Always" Placeholder="RecordDate" @bind-Value="@(Smartdata.RecordDate)"></SfDateTimePicker>
+									</div>	
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="NumberOfVouchers" @bind-Value="@(Smartdata.NumberOfVouchers)"></SfTextBox>
+									</div>
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="InvoiceNumber" @bind-Value="@(Smartdata.InvoiceNumber)"></SfTextBox>
+									</div>
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="PersonCode" @bind-Value="@(Smartdata.PersonCode)"></SfTextBox>
+									</div>
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="PersonName" @bind-Value="@(Smartdata.PersonName)"></SfTextBox>
+									</div>		
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="ObjectCode" @bind-Value="@(Smartdata.ObjectCode)"></SfTextBox>
+									</div>		
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="ObjectName" @bind-Value="@(Smartdata.ObjectName)"></SfTextBox>
+									</div>		
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="ObjectAddress" @bind-Value="@(Smartdata.ObjectAddress)"></SfTextBox>
+									</div>			
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="ObjectTaxCode" @bind-Value="@(Smartdata.ObjectTaxCode)"></SfTextBox>
+									</div>			
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="WarehoseCode" @bind-Value="@(Smartdata.WarehoseCode)"></SfTextBox>
+									</div>		
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="WarehoseName" @bind-Value="@(Smartdata.WarehoseName)"></SfTextBox>
+									</div>			
+									<div class="form-group col-md-6">
+										<SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="Description" @bind-Value="@(Smartdata.Description)"></SfTextBox>
+									</div>			
+								</div>
+							</div>
+						}
+					</Template>
+				</GridEditSettings>
+				<GridColumns>
+					<GridColumn Field="@nameof(SmartDatas.Id)" HeaderText="Id" IsPrimaryKey="true" Visible="false"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.DataType)" HeaderText="DataType"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.DataName)" HeaderText="DataName"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.VoucherDate)" Format="d"  HeaderText="VoucherDate" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.RecordDate)" Format="d"  HeaderText="RecordDate" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.NumberOfVouchers)" HeaderText="NumberOfVouchers"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.InvoiceNumber)" HeaderText="InvoiceNumber"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.PersonCode)" HeaderText="PersonCode"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.PersonName)" HeaderText="PersonName"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.PersonAddress)" HeaderText="PersonAddress"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectCode)" HeaderText="ObjectCode" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectName)" HeaderText="ObjectName"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectAddress)" HeaderText="ObjectAddress"  Width="200"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode"  Width="140"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.WarehoseCode)" HeaderText="WarehoseCode" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.WarehoseName)" HeaderText="WarehoseName" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.Description)" HeaderText="Description"  Width="160"></GridColumn>
+				</GridColumns>
+
+			</SfGrid>
+
+		</div>
+	</div>
+</div>
+
+
+@code {
+
+}

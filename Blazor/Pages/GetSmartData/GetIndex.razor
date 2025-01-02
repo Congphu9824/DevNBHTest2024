@@ -3,42 +3,47 @@
 
 
 <h3>Get Index SmartData</h3>
+<div class="col-lg-12 control-section">
+    <div class="content-wrapper">
+        <div class="row">
+            <SfGrid DataSource="GridData"
+                    AllowFiltering="true"
+                    AllowPaging="true"
+                    AllowSorting="true"
+                    AllowSelection="true"
+                    EnableVirtualization="true" EnableVirtualMaskRow="true"
+                    Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "Search" })"
+                    Height="350px;"
+                    @ref="SfGrid"
+                    ContextMenuItems="@(new List<object>() { "Copy", "Edit", "Delete", "Save", "Cancel", "PdfExport" })">
+                <GridEvents TValue="SmartData"></GridEvents>
+                <GridFilterSettings Type="FilterType.Excel"></GridFilterSettings>
+                <GridPageSettings PageSize="10"></GridPageSettings>
+                <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog" ShowDeleteConfirmDialog="true"></GridEditSettings>
+                <GridColumns>
+                    <GridColumn Field="@nameof(SmartDatas.Id)" HeaderText="Id" IsPrimaryKey="true" Visible="false"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.DataType)" HeaderText="DataType" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.DataType)" HeaderText="DataType" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.VoucherDate)" HeaderText="VoucherDate" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.RecordDate)" HeaderText="RecordDate" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.NumberOfVouchers)" HeaderText="NumberOfVouchers" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.ObjectCode)" HeaderText="ObjectCode" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.ObjectName)" HeaderText="ObjectName" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.ObjectAddress)" HeaderText="ObjectAddress" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.MethodOfPaymentsCode)" HeaderText="MethodOfPaymentsCode" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.MethodOfPaymentsName)" HeaderText="MethodOfPaymentsName" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.Description)" HeaderText="Description" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.Notes)" HeaderText="Notes" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.CreateDate)" HeaderText="CreateDate" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.ModifyDate)" HeaderText="ModifyDate" Width="120"></GridColumn>
+                    <GridColumn Field="@nameof(SmartDatas.ObjectEmail)" HeaderText="ObjectEmail" Width="120"></GridColumn>
+                </GridColumns>
 
-<SfGrid DataSource="GridData"
-        AllowPaging="true"
-        AllowFiltering="true"
-        AllowSelection="true"
-        AllowSorting="true"
-        Height="400px;"
-        EnableVirtualization="true" EnableVirtualMaskRow="true"
-        @ref="SfGrid"
-        Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "ExcelExport" })">
-       <GridFilterSettings  Type="FilterType.Excel"></GridFilterSettings>
-       <GridEvents TValue="SmartData" ></GridEvents>
-    <GridSelectionSettings CheckboxOnly="true" PersistSelection="true" Type="SelectionType.Multiple"></GridSelectionSettings>
-    <GridPageSettings PageSize="20"></GridPageSettings>
-    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog" ShowDeleteConfirmDialog="true"></GridEditSettings>
-    <GridColumns>   
-        <GridColumn Field=@nameof(SmartDatas.Id) HeaderText="Id" TextAlign="TextAlign.None" IsPrimaryKey="true" Visible="false" Width="120"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.DataType) HeaderText="DataType" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.DataName) HeaderText="DataName" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.VoucherDate) HeaderText="DataName" Format="d" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.RecordDate) HeaderText="RecordDate" Format="d" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.InvoiceResult) HeaderText="InvoiceResult" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.PersonCode) HeaderText="PersonCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.PersonName) HeaderText="PersonName" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.PersonAddress) HeaderText="PersonAddress" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.PersonTaxCode) HeaderText="PersonTaxCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.ObjectCode) HeaderText="ObjectCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.ObjectName) HeaderText="ObjectName" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.ObjectAddress) HeaderText="ObjectAddress" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.ObjectTaxCode) HeaderText="ObjectTaxCode" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.Description) HeaderText="Description" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.IdAsc) HeaderText="IdAsc" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="150"></GridColumn>
-        <GridColumn Field=@nameof(SmartDatas.Notes) HeaderText="Notes" EditType="EditType.DefaultEdit" TextAlign="TextAlign.None" Width="120"></GridColumn>
-    </GridColumns>
-</SfGrid>
-
+            </SfGrid>
+        </div>
+    </div>
+</div>
 
 @code {
 

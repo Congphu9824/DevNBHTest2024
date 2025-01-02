@@ -16,10 +16,10 @@ namespace Blazor.Pages.WmartMenu
         private WsmartMenu WSmartMenu = new WsmartMenu();
         SfGrid<WsmartMenu> GridRef;
 
-        protected override async Task OnInitializedAsync()
-        {
-            GridData = await IServiceAll.GetSmartMenus();
-        }
+        //protected override async Task OnInitializedAsync()
+        //{
+        //    GridData = await IServiceAll.GetSmartMenus();
+        //}
 
         public async Task OnActionBeginHandler(ActionEventArgs<WsmartMenu> args)
         {

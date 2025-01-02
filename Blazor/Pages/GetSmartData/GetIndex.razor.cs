@@ -5,7 +5,7 @@ using Syncfusion.Blazor.Grids;
 using static System.Net.WebRequestMethods;
 
 namespace Blazor.Pages.GetSmartData
-{
+{   
     public partial class GetIndex
     {
         [Inject] private IServiceAll IServiceAll { get; set; }
