@@ -33,6 +33,7 @@ namespace ApiDev.Controllers
 
         public async Task<IActionResult> DeleteData(string? parameter, string? tablename, string? keyData, string? dataPlus, string? maUser, string? codeUnit)
         {
+            
             var param = new { parameter, tablename, keyData, dataPlus, maUser, codeUnit };
             var result = await _IrepDevContext.GetListObjectAsync<object>("DeleteData", param);
             return Ok(result);

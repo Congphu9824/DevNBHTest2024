@@ -35,7 +35,7 @@ namespace WebAssembly.Services
 
         public async Task DeleteWarehose(Guid id)
         {
-            var response = await _httpClient.DeleteAsync($"api/ApiDev/DeleteData?parameter=CategoryWarehose&tablename=CategoryWarehose/{id}");
+            var response = await _httpClient.DeleteAsync($"api/ApiDev/DeleteData?parameter=CategoryWarehose&tablename=CategoryWarehose&keyData={id}");
             if (response.IsSuccessStatusCode)
             {
                 await _httpClient.GetFromJsonAsync<List<CategoryWarehose>>("api/ApiDev/GetData?parameter=GetAll&tablename=CategoryWarehose&LoaiPhieu=ListWarehose");
