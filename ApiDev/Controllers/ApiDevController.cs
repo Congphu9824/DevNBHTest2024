@@ -3,6 +3,7 @@ using ApiDev.Services;
 using Data.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace ApiDev.Controllers
 {
@@ -25,6 +26,7 @@ namespace ApiDev.Controllers
         {
             var param = new { parameter, tablename, LoaiPhieu, maUser, codeUser, codeUnit, condition };
             var Data = await _IrepDevContext.GetListObjectAsync<object>("SmartGetData", param);
+            Log.Information($"GetData =>{Data}");
             return Ok(Data);
         }
 

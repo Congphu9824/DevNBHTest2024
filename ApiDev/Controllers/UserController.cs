@@ -12,10 +12,10 @@ namespace ApiDev.Controllers
 
         }
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login()
-        {
+        //[HttpPost("Login")]
+        //public async Task<IActionResult> Login()
+        //{
 
-        }
+        //}
     }
 }

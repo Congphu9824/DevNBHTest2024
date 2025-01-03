@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,18 @@ builder.Services.AddDbContext<DevNbhtest2024Context>(option =>
 
 builder.Services.AddScoped<IRepDevContext, RepDevContext>();
 builder.Services.AddScoped<IDataService, DataService>();
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console() // show trên console
+    .WriteTo.File("logs/myBeautifulLog-.txt", rollingInterval: RollingInterval.Day) // lưu log vào file
+    .CreateLogger();
+
+//Log.Logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+
+// register serilog
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -67,6 +80,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseSerilogRequestLogging(); // ghi log infor about http
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
