@@ -18,7 +18,6 @@ namespace Data.Model
         public bool IsActive { get; set; }
         public string? Notes { get; set; }
         public Guid Id { get; set; }
-        public int IdAsc { get; set; }
         public int CodeUnit { get; set; }
         public int? IdInv { get; set; }
         public string? CodeInv { get; set; }

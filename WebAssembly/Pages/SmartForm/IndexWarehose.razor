@@ -3,30 +3,44 @@
 
 
 <h3>Index Warehose</h3>
-
+<SfToast @ref="ToastObj" Title="Notification" Width="280px"  Height="120px" Icon="e-info" CssClass="blue-toast" Content="@ToastContent">
+    <ToastPosition X="Right" Y="Top"></ToastPosition>
+</SfToast>
 <div class="col-lg-12 control-section">
     <div class="content-wrapper">
         <div class="row">
+@*             Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "Search" })"
+ *@
             <SfGrid DataSource="GridData"
             AllowFiltering="true"
             AllowSorting="true"
             AllowPaging="true"
-            Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "Search" })"
             Height="450px"
             @ref="SfGrid"
             ContextMenuItems="@(new List<object>() { "Copy", "Edit", "Delete", "Save", "Cancel", "PdfExport" })">
-
                 <GridEvents TValue="CategoryWarehose" OnActionBegin="OnActionBeginHandler"></GridEvents>
                 <GridFilterSettings Type="FilterType.Excel"></GridFilterSettings>
                 <GridPageSettings PageSize="10"></GridPageSettings>
-
+                <GridTemplates>
+                    <ToolbarTemplate>
+                        <SfToolbar>
+                            <ToolbarEvents Clicked="ToolbarClickHandler"></ToolbarEvents>
+                            <ToolbarItems>
+                                <ToolbarItem Type="@ItemType.Button" Align="ItemAlign.Right" PrefixIcon="e-plus icon" Id="Add" Text="Add"></ToolbarItem>
+                                <ToolbarItem Type="@ItemType.Button" Align="ItemAlign.Right" PrefixIcon="e-edit icon" Id="Edit" Text="Edit"></ToolbarItem>
+                                <ToolbarItem Type="@ItemType.Button" Align="ItemAlign.Right" PrefixIcon="e-trash icon" Id="Delete" Text="Delete"></ToolbarItem>
+                                <ToolbarItem Type="@ItemType.Button" Align="ItemAlign.Left" PrefixIcon="e-search icon" Id="Search" Text="Search"></ToolbarItem>
+                            </ToolbarItems>
+                        </SfToolbar>
+                    </ToolbarTemplate>
+                </GridTemplates>
                 <GridEditSettings 
                     AllowAdding="true"
                     AllowEditing="true"
                     AllowDeleting="true"
-                    Mode="EditMode.Dialog"
+                    Mode="EditMode.Normal"
                     ShowDeleteConfirmDialog="true">
-                    <Template>
+@*                     <Template>
                         @{
                             var CateWarehose = (context as CategoryWarehose);
                         }
@@ -47,13 +61,10 @@
                                 <div class="form-group col-md-6">
                                     <SfTextBox FloatLabelType="FloatLabelType.Always" Placeholder="AddressWarehose" @bind-Value="@(CateWarehose.AddressWarehose)"></SfTextBox>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <SfNumericTextBox FloatLabelType="FloatLabelType.Always" Placeholder="IdAsc" @bind-Value="@(CateWarehose.IdAsc)"></SfNumericTextBox>
-                                </div>
                             </div>
                         </div>
                     </Template> 
-                </GridEditSettings>
+ *@                </GridEditSettings>
 
                 <GridColumns>
                     <GridColumn Field="@nameof(CategoryWarehose.Id)" HeaderText="Id" IsPrimaryKey="true" Visible="false"></GridColumn>
@@ -67,7 +78,9 @@
         </div>
     </div>
 </div>
-
+<style>
+   
+</style>
 
 @code {
 

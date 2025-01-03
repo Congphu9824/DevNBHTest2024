@@ -25,7 +25,7 @@ namespace ApiDev.Services
             }
             await _db.AddAsync(entity);
 
-                int count = await _db.SaveChangesAsync();
+             int count = await _db.SaveChangesAsync();
             if (count > 0)
             {
                 return true;
@@ -42,7 +42,7 @@ namespace ApiDev.Services
                 throw new ArgumentException("lỗi sai data");
             }
 
-            _db.Update(entity);
+             _db.Update(entity);
 
             int count = await _db.SaveChangesAsync();
             if (count > 0)
@@ -54,8 +54,8 @@ namespace ApiDev.Services
 
         private Type GetEntityType(string entityType)
         {
-            var assembly = Assembly.GetAssembly(typeof(DevNbhtest2024Context));
-            return assembly?.GetTypes().FirstOrDefault(t => t.Name == entityType);
+            var assembly = Assembly.GetAssembly(typeof(DevNbhtest2024Context)); // tìm kiếm value 
+            return assembly?.GetTypes().FirstOrDefault(t => t.Name == entityType); // get list all các type trong assembly(class, interface, enums, structs)
         }
 
 

@@ -3,6 +3,7 @@ using Data.DTO;
 using Data.Model;
 using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Grids;
+using Syncfusion.Blazor.Notifications;
 using WebAssembly.Services;
 
 namespace WebAssembly.Pages.SmartForm
@@ -15,26 +16,23 @@ namespace WebAssembly.Pages.SmartForm
         [Inject] private IServiceWarehose serviceWarehose { get; set; }
         private List<CategoryWarehose> GridData { get; set; } = new List<CategoryWarehose>();
         private CategoryWarehose categoryWarehose = new CategoryWarehose();
+        private SfGrid<CategoryWarehose> SfGrid { get; set; }
 
-        private  SfGrid<CategoryWarehose> SfGrid { get; set; }
+        private SfToast ToastObj;
+        private string ToastContent { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             GridData = await serviceWarehose.GetWarehose();
 
         }
-
+        private void ShowToast()
+        {
+            ToastObj.ShowAsync();
+        }
         public async Task OnActionBeginHandler(ActionEventArgs<CategoryWarehose> args)
         {
-            if(args.Action == "Delete")
-            {
-                var DataDelete = args.Data.Id;
-                if (DataDelete != null)
-                {
-                   await  serviceWarehose.DeleteWarehose(DataDelete);
-                 }
-            }
-            else if(args.Action == "Add")
+            if (args.Action == "Add")
             {
                 var jsondata = JsonSerializer.Serialize(args.Data);
                 var response = new ResponseContext()
@@ -46,6 +44,8 @@ namespace WebAssembly.Pages.SmartForm
                 if (result == true)
                 {
                     await SfGrid.Refresh();
+                    ShowToast();
+                    ToastContent = "Warehouse added successfully.";
                 }
             }
             else if (args.Action == "Edit")
@@ -60,8 +60,38 @@ namespace WebAssembly.Pages.SmartForm
                 if (result == true)
                 {
                     await SfGrid.Refresh();
+                    ShowToast();
+                    ToastContent = "Warehouse updated successfully.";
+
                 }
             }
+            else if (args.Action == "Delete" && args.Data.Id != null)
+            {
+                var DataDelete = args.Data.Id;
+                if (DataDelete != null)
+                {
+                    await serviceWarehose.DeleteWarehose(DataDelete);
+                    await SfGrid.Refresh();
+                    ShowToast();
+                    ToastContent = "Warehouse deleted successfully";
+                }
+            }
+        }
+        public async Task ToolbarClickHandler(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+        {
+            if (args.Item.Text == "Add")
+            {
+                await SfGrid.AddRecordAsync();
+            }
+            else if (args.Item.Text == "Edit")
+            {
+                await SfGrid.StartEditAsync();
+            }
+            else if (args.Item.Text == "Delete")
+            {
+                await SfGrid.DeleteRecordAsync();
+            }
+
         }
     }
 }

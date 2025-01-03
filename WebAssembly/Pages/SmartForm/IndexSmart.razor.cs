@@ -12,9 +12,9 @@ namespace WebAssembly.Pages.SmartForm
     {
         [Inject] private IServiceAll IServiceAll { get; set; }
 
-        private List<SmartData> GridData { get; set; } = new List<SmartData>();
-        private SmartData SmartDatas = new SmartData();
-        SfGrid<SmartData> SfGrid;
+        private List<SmartDatum> GridData { get; set; } = new List<SmartDatum>();
+        private SmartDatum SmartDatas = new SmartDatum();
+        SfGrid<SmartDatum> SfGrid;
 
 
         protected override async Task OnInitializedAsync()
@@ -23,18 +23,32 @@ namespace WebAssembly.Pages.SmartForm
 
         }
 
-        public async Task OnActionBeginHandler(ActionEventArgs<SmartData> args)
+        public async Task OnActionBeginHandler(ActionEventArgs<SmartDatum> args)
         {
             if (args.Action == "Add")
             {
                 var jsondata = JsonSerializer.Serialize(args.Data);
                 var response = new ResponseContext()
                 {
-                    EntityType = "SmartData",
+                    EntityType = "SmartDatum",
                     JsonData = jsondata
                 };
                 var result = await IServiceAll.CreateData(response);
                 if (result)
+                {
+                    await SfGrid.Refresh();
+                }
+            }
+            else if (args.Action == "Edit")
+            {
+                var jsondata = JsonSerializer.Serialize(args.Data);
+                var response = new ResponseContext()
+                {
+                    EntityType = "SmartDatum",
+                    JsonData = jsondata
+                };
+                var result = await IServiceAll.updateWsSmartData(response);
+                if (result == true)
                 {
                     await SfGrid.Refresh();
                 }
@@ -49,22 +63,7 @@ namespace WebAssembly.Pages.SmartForm
 
             }
 
-            //else if (args.Action == "Edit")
-            //{
-            //    var jsondata = JsonSerializer.Serialize(args.Data);
-            //    var response = new ResponseContext()
-            //    {
-            //        EntityType = "WsmartMenu",
-            //        JsonData = jsondata
-            //    };
-            //    var result = await IServiceAll.updateWsSmartData(response);
-            //    if (result == true)
-            //    {
-            //        await GridRef.Refresh();
-            //    }
-            //}
-
         }
-
+       
     }
 }

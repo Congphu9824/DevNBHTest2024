@@ -25,8 +25,6 @@ public partial class CategoryWarehose
 
     public Guid Id { get; set; }
 
-    public int IdAsc { get; set; }
-
     public int CodeUnit { get; set; }
 
     public int? IdInv { get; set; }

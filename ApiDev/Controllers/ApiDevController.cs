@@ -54,8 +54,7 @@ namespace ApiDev.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("UpdateData")]
+        [HttpPut("UpdateData")]
         public async Task<IActionResult> UpdateData(ResponseContext dto)
         {
 

@@ -2776,7 +2776,6 @@ public partial class DevNbhtest2024Context : DbContext
             entity.Property(e => e.CodeUnit).HasDefaultValue(100);
             entity.Property(e => e.FristCode).HasMaxLength(50);
             entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-            entity.Property(e => e.IdAsc).ValueGeneratedOnAdd();
             entity.Property(e => e.InvoiceSymbol).HasMaxLength(50);
             entity.Property(e => e.InvoiceTemplate).HasMaxLength(50);
             entity.Property(e => e.NameInv).HasMaxLength(250);

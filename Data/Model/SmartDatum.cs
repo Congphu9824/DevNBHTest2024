@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Model
 {
-    public class SmartData
+    public class SmartDatum
     {
         public Guid Id { get; set; }
         public string? DataType { get; set; }

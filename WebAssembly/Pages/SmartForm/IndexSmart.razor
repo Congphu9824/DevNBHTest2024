@@ -7,16 +7,22 @@
 		<div class="row">
 			<SfGrid DataSource="GridData"
 					AllowFiltering="true"
-					AllowSorting="true"
-					Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "Search" })"
+					AllowSorting="true" 
+					AllowPaging="true"
 					Height="450px;"
 					@ref="SfGrid"
+					Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Print", "PdfExport", "Search" })"
 					ContextMenuItems="@(new List<object>() { "Copy", "Edit", "Delete", "Save", "Cancel", "PdfExport" })">
-				<GridEvents TValue="SmartData" OnActionBegin="OnActionBeginHandler"></GridEvents>
+				<GridEvents TValue="SmartDatum" OnActionBegin="OnActionBeginHandler"></GridEvents>
 				<GridFilterSettings Type="FilterType.Excel"></GridFilterSettings>
 				<GridPageSettings PageSize="10"></GridPageSettings>
-				<GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog" ShowDeleteConfirmDialog="true">
-					<Template>
+				<GridEditSettings 
+							AllowAdding="true"
+							AllowEditing="true" 
+							AllowDeleting="true" 
+							Mode="EditMode.Normal" 
+							ShowDeleteConfirmDialog="true">
+@* 					<Template>
 						@{
 							var Smartdata = (context as SmartData);
 							<div class="container">
@@ -70,7 +76,7 @@
 							</div>
 						}
 					</Template>
-				</GridEditSettings>
+ *@				</GridEditSettings>
 				<GridColumns>
 					<GridColumn Field="@nameof(SmartDatas.Id)" HeaderText="Id" IsPrimaryKey="true" Visible="false"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.DataType)" HeaderText="DataType"  Width="120"></GridColumn>
@@ -79,17 +85,20 @@
 					<GridColumn Field="@nameof(SmartDatas.RecordDate)" Format="d"  HeaderText="RecordDate" Width="120"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.NumberOfVouchers)" HeaderText="NumberOfVouchers"  Width="120"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.InvoiceNumber)" HeaderText="InvoiceNumber"  Width="120"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.PersonCode)" HeaderText="PersonCode"  Width="120"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.PersonName)" HeaderText="PersonName"  Width="120"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.PersonAddress)" HeaderText="PersonAddress"  Width="120"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode"  Width="120"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.ObjectCode)" HeaderText="ObjectCode" Width="120"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.ObjectName)" HeaderText="ObjectName"  Width="120"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.ObjectAddress)" HeaderText="ObjectAddress"  Width="200"></GridColumn>
-					<GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode"  Width="140"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectName)" HeaderText="ObjectName" Width="120"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.WarehoseCode)" HeaderText="WarehoseCode" Width="120"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.WarehoseName)" HeaderText="WarehoseName" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.WarehoseNameReceive)" HeaderText="WarehoseNameReceive" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.WarehoseNameReceive)" HeaderText="WarehoseNameReceive" Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.PersonCode)" HeaderText="PersonCode"  Width="120"></GridColumn>
+@* 					<GridColumn Field="@nameof(SmartDatas.PersonName)" HeaderText="PersonName"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.PersonAddress)" HeaderText="PersonAddress"  Width="120"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode"  Width="120"></GridColumn> *@
+					<GridColumn Field="@nameof(SmartDatas.ObjectAddress)" HeaderText="ObjectAddress"  Width="200"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.ObjectTaxCode)" HeaderText="ObjectTaxCode"  Width="140"></GridColumn>
 					<GridColumn Field="@nameof(SmartDatas.Description)" HeaderText="Description"  Width="160"></GridColumn>
+					<GridColumn Field="@nameof(SmartDatas.CreateDate)" HeaderText="Description"  Width="160"></GridColumn>
 				</GridColumns>
 
 			</SfGrid>
